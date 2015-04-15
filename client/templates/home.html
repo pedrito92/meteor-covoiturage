@@ -1,14 +1,32 @@
 <template name="home">
-  <h1>Home page</h1>
-
     {{#if currentUser}}
-    	Rechercher parmis les trajets
-        <form>
-            <input type="text" name="depart">
-            <input type="text" name="arrivee">
-            <input type="date" name="date">
-            <input type="submit" value="Rechercher">
-        </form>
+    <div class="jumbotron">
+        <h1>Rechercher parmis les trajets</h1>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-flag" style="color: darkgreen" aria-hidden="true"></span></div>
+                    <input type="text" name="depart" id="selDepart" class="form-control" placeholder="Départ">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-flag" style="color: darkred;" aria-hidden="true"></span></div>
+                    <input type="text" name="arrivee" id="salArrivee" class="form-control" placeholder="Arrivée">
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <input type="date" name="date" id="selDate" class="form-control" placeholder="Date">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+                </div>
+            </div>
+            <div class="col-lg-1">
+                <input type="submit" id="btnSearch" value="Rechercher" class="btn btn-primary">
+            </div>
+        </div>
+    </div>
+
 
         <a href="/create/">Proposer un trajet</a>
     {{/if}}

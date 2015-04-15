@@ -18,7 +18,7 @@ Router.route('/covoiturage/:_id', function () {
 });
 
 Router.route('/profil/:_id/annonces', function () {
-  this.render('covoiturage', {
+  this.render('annonces', {
     data: function () {
       // set the reactive state variable "postId" with a value
       // of the id from our url
@@ -29,7 +29,7 @@ Router.route('/profil/:_id/annonces', function () {
 });
 
 Router.route('/profil/:_id/resa', function () {
-  this.render('covoiturage', {
+  this.render('resa', {
     data: function () {
       // set the reactive state variable "postId" with a value
       // of the id from our url
@@ -54,7 +54,13 @@ if (Meteor.isClient) {
 
     Template.home.helpers({
         trajets: function () {
-            return trajets.find();
+            return trajets.find({user_id : Meteor.userId()});
+        }
+    });
+
+    Template.annonces.helpers({
+        trajets: function () {
+            return trajets.find({user_id : Meteor.userId()});
         }
     });
 
@@ -74,7 +80,7 @@ if (Meteor.isClient) {
       if (depart != '' && arrivee != '' && date != '' && prix != '' && heure != '' && nombre_places != '') {
         trajets.insert({user_id: Meteor.userId(), depart:depart, arrivee:arrivee, date:date, prix:prix, heure:heure, nombre_places:nombre_places });
         Router.go('/');
-      };
+      }
     }
   });
 

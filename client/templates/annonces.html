@@ -1,0 +1,19 @@
+<template name="annonces">
+    <ul class="list-group">
+        {{#each trajets}}
+        <li class="list-group-item">
+            <h1>{{depart}} -> {{arrivee}}</h1>
+            <dl class="dl-horizontal">
+                <dt>Date du voyage : </dt>
+                <dd>{{date}}</dd>
+                <dt>Heure de départ : </dt>
+                <dd>{{heure}}h</dd>
+                <dt>Nombre de place libre : </dt>
+                <dd>{{nombre_places}}</dd>
+                <dt>Prix du Voyage : </dt>
+                <dd>{{prix}} €</dd>
+            </dl>
+        </li>
+        {{/each}}
+    </ul>
+</template>

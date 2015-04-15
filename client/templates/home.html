@@ -1,5 +1,18 @@
 <template name="home">
-  Welcome !
   <h1>Home page</h1>
-   <a href="/covoiturage/1">Covoiturage</a>
+
+  {{>loginButtons}}
+
+    {{#if currentUser}}
+    	Rechercher parmis les trajets
+        <form>
+            <input type="text" name="depart">
+            <input type="text" name="arrivee">
+            <input type="date" name="date">
+            <input type="submit" value="Rechercher">
+        </form>
+
+        <a href="/create">Proposer un trajet</a>
+    {{/if}}
+
 </template>

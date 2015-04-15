@@ -54,7 +54,7 @@ if (Meteor.isClient) {
 
     Template.home.helpers({
         trajets: function () {
-            return trajets.find({user_id : Meteor.userId()});
+            return trajets.find( { user_id : { $ne : Meteor.userId() } , nombre_places : { $ne : 0 } } );
         }
     });
 
@@ -70,6 +70,11 @@ if (Meteor.isClient) {
       event.preventDefault();
 
       var id = this._id;
+
+      trajet = trajets.find({user_id: Meteor.userId()});
+
+      console.log(trajet);
+
       trajets.update
       ( 
         { _id: id }, 
@@ -85,6 +90,7 @@ if (Meteor.isClient) {
           } 
         }
       );
+
       // Router.go('/resa');
     }
   });

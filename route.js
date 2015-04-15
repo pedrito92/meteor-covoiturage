@@ -52,6 +52,12 @@ if (Meteor.isClient) {
     nom: "Axel"
   });
 
+    Template.home.helpers({
+        trajets: function () {
+            return trajets.find();
+        }
+    });
+
 
   Template.create.events({
     "click #submit_trajet": function(event, template)

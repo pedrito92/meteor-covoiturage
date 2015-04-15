@@ -1,23 +1,40 @@
+Router.route('/', function () {
+  this.render('home');
+});
+
+Router.route('/covoiturage/:_id', function () {
+  this.render('covoiturage', {
+    data: function () {
+      // set the reactive state variable "postId" with a value
+      // of the id from our url
+      this.state.set('_id', this.params._id);
+      // this.render();
+    }
+  });
+});
+
+
+
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
+  Template.covoiturage.helpers({
+    _id: function () {
+      controller = Iron.controller();
+      return controller.state.get('_id');
+    },
+    nom: "Axel"
   });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
+  // Template.hello.events({
+  //   'click button': function () {
+  //     // increment the counter when button is clicked
+  //     Session.set('counter', Session.get('counter') + 1);
+  //   }
+  // });
 }
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}
+// if (Meteor.isServer) {
+//   Meteor.startup(function () {
+//     // code to run on server at startup
+//   });
+// }

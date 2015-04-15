@@ -1,8 +1,6 @@
 <template name="home">
   <h1>Home page</h1>
 
-  {{>loginButtons}}
-
     {{#if currentUser}}
     	Rechercher parmis les trajets
         <form>
@@ -12,7 +10,7 @@
             <input type="submit" value="Rechercher">
         </form>
 
-        <a href="/create">Proposer un trajet</a>
+        <a href="/create/">Proposer un trajet</a>
     {{/if}}
 
 </template>

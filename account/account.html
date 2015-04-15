@@ -1,0 +1,23 @@
+<template name="login">
+    {{>loginButtons}}
+    <hr/>
+    {{userid}}
+    <hr/>
+    {{#if currentUser}}
+    <form class="new-task">
+        <input type="text" name="text" placeholder="Type to add new tasks" />
+    </form>
+    {{/if}}
+    <hr/>
+    <span class="text"><strong>{{username}}</strong> - plop</span>
+</template>
+
+<template name="loginForm">
+    <form id="login-form" action="action">
+        <div>
+            <input type="email" id="login-email" />
+            <input type="password" id="login-password" />
+            <input type="submit" id="login-button" value="Sign in" />
+        </div>
+    </form>
+</template>

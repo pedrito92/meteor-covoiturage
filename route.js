@@ -64,6 +64,31 @@ if (Meteor.isClient) {
         }
     });
 
+  Template.home.events({
+    "click #reserver": function(event, template)
+    {
+      event.preventDefault();
+
+      var id = this._id;
+      trajets.update
+      ( 
+        { _id: id }, 
+        { 
+          $inc : { nombre_places: -1 },
+          $set : 
+          {
+            inscrit : [
+                        {
+                          user_id : Meteor.userId() 
+                        }
+                      ] 
+          } 
+        }
+      );
+      // Router.go('/resa');
+    }
+  });
+
 
   Template.create.events({
     "click #submit_trajet": function(event, template)
@@ -78,7 +103,7 @@ if (Meteor.isClient) {
       var nombre_places = template.find('#nombre_places').value;
 
       if (depart != '' && arrivee != '' && date != '' && prix != '' && heure != '' && nombre_places != '') {
-        trajets.insert({user_id: Meteor.userId(), depart:depart, arrivee:arrivee, date:date, prix:prix, heure:heure, nombre_places:nombre_places });
+        trajets.insert({user_id: Meteor.userId(), depart:depart, arrivee:arrivee, date:date, prix: prix, heure:heure, nombre_places:parseInt(nombre_places) });
         Router.go('/');
       }
     }

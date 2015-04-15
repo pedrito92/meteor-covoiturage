@@ -66,7 +66,7 @@ if (Meteor.isClient) {
       var nombre_places = template.find('#nombre_places').value;
 
       if (depart != '' && arrivee != '' && date != '' && prix != '' && heure != '' && nombre_places != '') {
-        trajets.insert({ depart:depart, arrivee:arrivee, date:date, prix:prix, heure:heure, nombre_places:nombre_places });
+        trajets.insert({user_id: Meteor.userId(), depart:depart, arrivee:arrivee, date:date, prix:prix, heure:heure, nombre_places:nombre_places });
         Router.go('/');
       };
     }

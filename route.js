@@ -84,23 +84,28 @@ if (Meteor.isClient) {
 
       trajet = trajets.find({user_id: Meteor.userId()});
 
-      console.log(trajet);
+      //console.log(trajet);
 
-      trajets.update
-      ( 
-        { _id: id }, 
-        { 
-          $inc : { nombre_places: -1 },
-          $set : 
-          {
-            inscrit : [
-                        {
-                          user_id : Meteor.userId() 
-                        }
-                      ] 
-          } 
+        if(Meteor.userId() != null){
+          trajets.update
+          (
+            { _id: id },
+            {
+              $inc : { nombre_places: -1 },
+              $set :
+              {
+                inscrit : [
+                            {
+                              user_id : Meteor.userId()
+                            }
+                          ]
+              }
+            }
+          );
+        }else{
+            console.log("false");
+            //alert("Vous devez être connecté pour pouvoir réserver un voyage.");
         }
-      );
 
       // Router.go('/resa');
     }

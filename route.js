@@ -2,6 +2,17 @@ Router.route('/', function () {
   this.render('home');
 });
 
+Router.onBeforeAction(function () {
+    if(!Meteor.user()){
+        this.render('home');
+        console.log(this.url);
+        //this.go('/');
+    }
+    else{
+        this.next();
+    }
+});
+
 Router.route('/create', function () {
   this.render('create');
 });
@@ -17,7 +28,7 @@ Router.route('/covoiturage/:_id', function () {
   });
 });
 
-Router.route('/profil/:_id/annonces', function () {
+Router.route('/annonces', function () {
   this.render('annonces', {
     data: function () {
       // set the reactive state variable "postId" with a value
@@ -28,7 +39,7 @@ Router.route('/profil/:_id/annonces', function () {
   });
 });
 
-Router.route('/profil/:_id/resa', function () {
+Router.route('/resa', function () {
   this.render('resa', {
     data: function () {
       // set the reactive state variable "postId" with a value

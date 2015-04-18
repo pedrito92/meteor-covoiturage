@@ -5,7 +5,6 @@ Router.route('/', function () {
 Router.onBeforeAction(function () {
     if(!Meteor.user()){
         this.render('home');
-        console.log(this.url);
         //this.go('/');
     }
     else{
@@ -66,6 +65,9 @@ if (Meteor.isClient) {
     Template.home.helpers({
         trajets: function () {
             return trajets.find( { user_id : { $ne : Meteor.userId() } , nombre_places : { $ne : 0 } } );
+        },
+        isUser: function (userId) {
+            return userId == Meteor.userId();
         }
     });
 
@@ -76,7 +78,7 @@ if (Meteor.isClient) {
         getUser: function (userId) {
             if (userId) {
                 var user = Meteor.users.find({_id : userId}),
-                    username;
+                    username = '';
                 user.forEach(function (u) {
                     username = u.username;
                 });
@@ -86,6 +88,15 @@ if (Meteor.isClient) {
         }
     });
 
+    Template.annonces.events({
+        'click .remove': function () {
+        console.log(this.user_id, this.parent._id);
+            //TODO: Utilisateur à supprimer
+            alert("Utilisateur à supprimer");
+        //trajets.remove({user_id:this._id});
+    }
+    });
+
   Template.home.events({
     "click #reserver": function(event, template)
     {
@@ -93,31 +104,23 @@ if (Meteor.isClient) {
 
       var id = this._id;
 
-      trajet = trajets.find({user_id: Meteor.userId()});
+      //trajet = trajets.find({user_id: Meteor.userId()});
 
-      //console.log(trajet);
 
         if(Meteor.userId() != null){
-          trajets.update
-          (
-            { _id: id },
-            {
-              $inc : { nombre_places: -1 },
-              $set :
-              {
-                inscrit : [
-                            {
-                              user_id : Meteor.userId()
-                            }
-                          ]
-              }
-            }
-          );
-        }else{
-            console.log("false");
-            //alert("Vous devez être connecté pour pouvoir réserver un voyage.");
+            var trajet = trajets.find({_id: id});
+
+            trajet.forEach(function (t) {
+                if(t.inscrit == undefined) t.inscrit = [];
+                t.inscrit.push({
+                    user_id : Meteor.userId()
+                });
+                trajets.update({ _id: id }, {$inc: { 'nombre_places': -1 }, $set: {'inscrit': t.inscrit}});
+            });
         }
 
+        //TODO: Bouton Réserver à désactiver après le click
+        alert("Bouton Réserver à désactiver après le click");
       // Router.go('/resa');
     }
   });

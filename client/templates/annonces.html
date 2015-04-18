@@ -21,7 +21,8 @@
                         <ul class="list-group">
                         {{#each inscrit}}
                             <li class="list-group-item">
-                                {{getUser user_id}}
+                                <span>{{getUser user_id}}</span>
+                                <button type="button" class="close remove"><span aria-hidden="true">&times;</span></button>
                             </li>
                         {{/each}}
                     </ul>

@@ -72,6 +72,17 @@ if (Meteor.isClient) {
     Template.annonces.helpers({
         trajets: function () {
             return trajets.find({user_id : Meteor.userId()});
+        },
+        getUser: function (userId) {
+            if (userId) {
+                var user = Meteor.users.find({_id : userId}),
+                    username;
+                user.forEach(function (u) {
+                    username = u.username;
+                });
+
+                return username;
+            }
         }
     });
 

@@ -55,8 +55,15 @@
                     </dl>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6">
-                        <button type="submit" class="btn-primary btn" id="reserver">Réserver</button>
-
+                        {{#if currentUser}}
+                            {{#if isInscrit}}
+                                <a href="" type="button" class="btn btn-success active">Déjà Résevé</a>
+                            {{else}}
+                                <button type="submit" class="btn-primary btn" id="reserver">Réserver</button>
+                            {{/if}}
+                        {{else}}
+                            <button type="submit" class="btn-primary btn" data-toggle="modal" data-target="#myModal">Réserver</button   >
+                        {{/if}}
                     </div>
                 </div>
             </div>

@@ -7,6 +7,11 @@ Template.home.helpers({
     },
     isUser: function (userId) {
         return userId == Meteor.userId();
+    },
+    isInscrit: function () {
+        var trajet = trajets.find({_id : this._id, inscrit:{ $elemMatch: { user_id:  Meteor.userId() }}});
+
+        return trajet.count() > 0;
     }
 });
 
@@ -19,9 +24,6 @@ Template.home.events({
 
         var id = this._id;
 
-        //trajet = trajets.find({user_id: Meteor.userId()});
-
-
         if(Meteor.userId() != null){
             var trajet = trajets.find({_id: id});
 
@@ -33,9 +35,5 @@ Template.home.events({
                 trajets.update({ _id: id }, {$inc: { 'nombre_places': -1 }, $set: {'inscrit': t.inscrit}});
             });
         }
-
-        //TODO: Bouton Réserver à désactiver après le click
-        alert("Bouton Réserver à désactiver après le click");
-        // Router.go('/resa');
     }
 });

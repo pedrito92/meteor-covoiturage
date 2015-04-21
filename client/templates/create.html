@@ -5,30 +5,45 @@
         <form>
             <div class="form-group">
                 <label for="depart">Départ :</label>
-                <input type="text" name="depart" id="depart" class="form-control" placeholder="Ville de Départ">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-flag" style="color: darkgreen" aria-hidden="true"></span></div>
+                    <input type="text" name="depart" id="depart" class="form-control" placeholder="Ville de Départ">
+                </div>
             </div>
             <div class="form-group">
                 <label for="arrivee">Arrivée :</label>
-                <input type="text" name="arrivee" id="arrivee" class="form-control" placeholder="Ville d'Arrrivée">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-flag" style="color: darkred;" aria-hidden="true"></span></div>
+                    <input type="text" name="arrivee" id="arrivee" class="form-control" placeholder="Ville d'Arrrivée">
+                </div>
             </div>
             <div class="form-group">
                 <label for="date">Date du voyage :</label>
-                <input type="date" name="date" id="date" class="form-control" placeholder="Date du voyage">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+                    <input type="date" name="date" id="date" class="form-control" placeholder="Date du voyage">
+                </div>
             </div>
             <div class="form-group">
-                <label for="prix" class="sr-only">Prix du voyage :</label>
+                <label for="prix">Prix du voyage :</label>
                 <div class="input-group">
-                    <div class="input-group-addon">€</div>
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span></div>
                     <input type="text" class="form-control" id="prix" placeholder="Prix du voyage">
                 </div>
             </div>
             <div class="form-group">
                 <label for="heure">Heure prévu du Départ:</label>
-                <input type="time" name="heure" id="heure" class="form-control" placeholder="Heure prévu du Départ">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></div>
+                    <input type="time" name="heure" id="heure" class="form-control" placeholder="Heure prévu du Départ">
+                </div>
             </div>
             <div class="form-group">
                 <label for="nombre_places">Nombre places dans le véhicule :</label>
-                <input type="number" name="nombre_places" id="nombre_places" class="form-control" placeholder="Nombre places dans le véhicule">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                    <input type="number" name="nombre_places" id="nombre_places" class="form-control" placeholder="Nombre places dans le véhicule">
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Ajouter le trajet" class="btn btn-primary" id="submit_trajet">

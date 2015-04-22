@@ -35,5 +35,15 @@ Template.home.events({
                 trajets.update({ _id: id }, {$inc: { 'nombre_places': -1 }, $set: {'inscrit': t.inscrit}});
             });
         }
+    },
+    "submit .search": function (event, template) {
+//        var text = event.target.text.value;
+        var depart = event.target.depart.value,
+            arrivee = event.target.arrivee.value,
+            date = event.target.date.value;
+
+        console.log(depart, arrivee, date);
+        // Prevent default form submit
+        return false;
     }
 });

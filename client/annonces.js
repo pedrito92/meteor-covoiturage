@@ -25,6 +25,6 @@ Template.inscrit.helpers({
 Template.trajet.events({
     'click .remove': function (event,template){
         var parentID = template.data._id;
-        trajets.update({_id: parentID},{$unset:{inscrit:{ $elemMatch: { user_id:  this.user_id }}}});
+        trajets.update({_id: parentID},{$pull: {inscrit: {user_id: this.user_id }},$inc: { 'nombre_places': +1 }});
     }
 });

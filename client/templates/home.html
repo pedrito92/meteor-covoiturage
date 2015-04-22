@@ -1,7 +1,8 @@
 <template name="home">
     <div class="jumbotron">
         <h1>Rechercher parmis les trajets</h1>
-        <div class="row">
+        <form class="search">
+        <div class="row show-grid">
             <div class="col-lg-4">
                 <div class="input-group">
                     <div class="input-group-addon"><span class="glyphicon glyphicon-flag" style="color: darkgreen" aria-hidden="true"></span></div>
@@ -21,12 +22,12 @@
                 </div>
             </div>
         </div>
-        <div class="clearfix"></div>
-        <div class="row">
+        <div class="row show-grid">
             <div class="col-lg-4 col-lg-offset-4">
                 <input type="submit" id="btnSearch" value="Rechercher" class="btn btn-primary btn-block">
             </div>
         </div>
+        </form>
     </div>
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

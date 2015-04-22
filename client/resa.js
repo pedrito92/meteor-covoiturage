@@ -23,6 +23,6 @@ Template.myTrajects.helpers({
 
 Template.myTrajects.events({
     'click .cancel': function (){
-        trajets.update({_id: this._id},{$unset:{inscrit:{ $elemMatch: { user_id:  this.user_id }}}});
+        trajets.update({_id: this._id},{$pull: {inscrit: {user_id: Meteor.userId() }},$inc: { 'nombre_places': +1 }});
     }
 });

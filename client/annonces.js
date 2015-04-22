@@ -5,7 +5,10 @@
 Template.annonces.helpers({
     trajets: function () {
         return trajets.find({user_id : Meteor.userId()});
-    },
+    }
+});
+
+Template.inscrit.helpers({
     getUser: function (userId) {
         if (userId) {
             var user = Meteor.users.find({_id : userId}),
@@ -19,11 +22,9 @@ Template.annonces.helpers({
     }
 });
 
-Template.annonces.events({
-    'click .remove': function () {
-        console.log(this.user_id, this.parent._id);
-        //TODO: Utilisateur à supprimer
-        alert("Utilisateur à supprimer");
-        //trajets.remove({user_id:this._id});
+Template.trajet.events({
+    'click .remove': function (event,template){
+        var parentID = template.data._id;
+        trajets.update({_id: parentID},{$unset:{inscrit:{ $elemMatch: { user_id:  this.user_id }}}});
     }
 });

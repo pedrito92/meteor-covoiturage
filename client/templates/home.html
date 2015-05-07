@@ -24,7 +24,6 @@
         </div>
         <div class="row show-grid">
             <div class="col-lg-4 col-lg-offset-4">
-                <!-- <input type="butoon" id="btnSearch" value="Rechercher" class="btn btn-primary btn-block"> -->
                 <button type="button"  id="btnSearch"  class="btn btn-primary btn-block">Rechercher</button>
             </div>
         </div>
@@ -32,87 +31,45 @@
     </div>
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        {{#if SearchTrajets}}
-            {{#each SearchTrajets}}
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#{{_id}}" aria-expanded="true" aria-controls="collapseOne">
-                        <h4 class="panel-title">
-                            {{depart}} -> {{arrivee}}
-                        </h4>
-                    </a>
+        {{#each trajets}}
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <a data-toggle="collapse" data-parent="#accordion" href="#{{_id}}" aria-expanded="true" aria-controls="collapseOne">
+                    <h4 class="panel-title">
+                        {{depart}} -> {{arrivee}}
+                    </h4>
+                </a>
 
-                </div>
-                <div id="{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                        <dl class="dl-horizontal">
-                            <dt>Date du voyage : </dt>
-                            <dd>{{date}}</dd>
-                            <dt>Heure de départ : </dt>
-                            <dd>{{heure}}h</dd>
-                            <dt>Nombre de place libre : </dt>
-                            <dd>{{nombre_places}}</dd>
-                            <dt>Prix du Voyage : </dt>
-                            <dd>{{prix}} €</dd>
-                        </dl>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            {{#if currentUser}}
-                                {{#if isInscrit}}
-                                    <a href="" type="button" class="btn btn-success active">Déjà Résevé</a>
-                                {{else}}
-                                    <button type="submit" class="btn-primary btn" id="reserver">Réserver</button>
-                                {{/if}}
+            </div>
+            <div id="{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt>Date du voyage : </dt>
+                        <dd>{{date}}</dd>
+                        <dt>Heure de départ : </dt>
+                        <dd>{{heure}}h</dd>
+                        <dt>Nombre de place libre : </dt>
+                        <dd>{{nombre_places}}</dd>
+                        <dt>Prix du Voyage : </dt>
+                        <dd>{{prix}} €</dd>
+                    </dl>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        {{#if currentUser}}
+                            {{#if isInscrit}}
+                                <a href="" type="button" class="btn btn-success active">Déjà Résevé</a>
                             {{else}}
-                                <button type="submit" class="btn-primary btn" data-toggle="modal" data-target="#myModal">Réserver</button   >
+                                <button type="submit" class="btn-primary btn" id="reserver">Réserver</button>
                             {{/if}}
-                        </div>
+                        {{else}}
+                            <button type="submit" class="btn-primary btn" data-toggle="modal" data-target="#myModal">Réserver</button   >
+                        {{/if}}
                     </div>
                 </div>
             </div>
-            {{/each}}
-        {{else}}
-            {{#each trajets}}
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#{{_id}}" aria-expanded="true" aria-controls="collapseOne">
-                        <h4 class="panel-title">
-                            {{depart}} -> {{arrivee}}
-                        </h4>
-                    </a>
-
-                </div>
-                <div id="{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                        <dl class="dl-horizontal">
-                            <dt>Date du voyage : </dt>
-                            <dd>{{date}}</dd>
-                            <dt>Heure de départ : </dt>
-                            <dd>{{heure}}h</dd>
-                            <dt>Nombre de place libre : </dt>
-                            <dd>{{nombre_places}}</dd>
-                            <dt>Prix du Voyage : </dt>
-                            <dd>{{prix}} €</dd>
-                        </dl>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            {{#if currentUser}}
-                                {{#if isInscrit}}
-                                    <a href="" type="button" class="btn btn-success active">Déjà Résevé</a>
-                                {{else}}
-                                    <button type="submit" class="btn-primary btn" id="reserver">Réserver</button>
-                                {{/if}}
-                            {{else}}
-                                <button type="submit" class="btn-primary btn" data-toggle="modal" data-target="#myModal">Réserver</button   >
-                            {{/if}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{/each}}
-        {{/if}}
+        </div>
+        {{/each}}
     </div>
 
 

@@ -9,7 +9,13 @@ Template.home.helpers({
         else
         {
             searchTerms = Session.get('SearchTrajets');
-            return trajets.find( { arrivee : searchTerms.arrivee, depart : searchTerms.depart, date : searchTerms.date , user_id : { $ne : Meteor.userId() } , nombre_places : { $ne : 0 } } );
+            if (searchTerms.date != "") {
+                return trajets.find( { arrivee : searchTerms.arrivee, depart : searchTerms.depart, date : searchTerms.date , user_id : { $ne : Meteor.userId() } , nombre_places : { $ne : 0 } } );
+            }
+            else
+            {
+                return trajets.find( { arrivee : searchTerms.arrivee, depart : searchTerms.depart, user_id : { $ne : Meteor.userId() } , nombre_places : { $ne : 0 } } );
+            }
         }
     },
     isUser: function (userId) {
